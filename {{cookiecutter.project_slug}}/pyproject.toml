@@ -13,6 +13,9 @@ classifiers = []
 
 [tool.poetry.dependencies]
 python = "{{ cookiecutter.python_version }}"
+{% if cookiecutter.with_cli == 'yes' %}
+click = "^8.1.7"
+{% endif %}
 
 [tool.poetry.group.dev.dependencies]
 chance = "^0.110"
@@ -21,6 +24,11 @@ pylint = "^3.3.1"
 pytest = "^8.3.3"
 pytest-cov = "^5.0.0"
 tox = "^4.21.2"
+
+{% if cookiecutter.with_cli == 'yes' %}
+[tool.poetry.scripts]
+{{cookiecutter.project_slug}} = "{{cookiecutter.project_package}}.__main__:main"
+{% endif %}
 
 [build-system]
 requires = ["poetry-core"]

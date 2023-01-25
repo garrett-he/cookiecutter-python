@@ -20,6 +20,10 @@
     "license_year": "{% now 'utc', '%Y' %}",
     "github_path": "{{ cookiecutter.author_name.lower() | slugify }}/{{ cookiecutter.project_slug }}",
     "python_version": "^3.10,<3.13",
+    "with_cli": [
+        "no",
+        "yes"
+    ],
     "_copy_without_render": [
         ".github/*"
     ]
