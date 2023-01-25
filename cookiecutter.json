@@ -28,6 +28,10 @@
         "no",
         "yes"
     ],
+    "with_cython": [
+        "no",
+        "yes"
+    ],
     "_copy_without_render": [
         ".github/*"
     ]

@@ -20,6 +20,9 @@ click = "^8.1.7"
 
 [tool.poetry.group.dev.dependencies]
 chance = "^0.110"
+{% if cookiecutter.with_cython == 'yes' %}
+cython = "^3.0.11"
+{% endif %}
 pre-commit = "^4.0.1"
 {% if cookiecutter.with_pyinstaller == 'yes' %}
 pyinstaller = "^6.10.0"
