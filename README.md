@@ -1,5 +1,8 @@
 # cookiecutter-python
 
+![License](https://img.shields.io/github/license/garrett-he/cookiecutter-python)
+![GitHub Workflow](https://img.shields.io/github/actions/workflow/status/garrett-he/cookiecutter-python/ubuntu-jammy.yml)
+
 A Cookiecutter template for Python projects.
 
 ## Quickstart
