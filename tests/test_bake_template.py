@@ -1,4 +1,5 @@
 import random
+import toml
 from glob import glob
 
 from chance import chance
@@ -19,11 +20,15 @@ def generate_context() -> dict:
         'project_name': f'{chance.word().capitalize()} {chance.word().capitalize()}',
         'project_slug': f'{chance.word().lower()}-{chance.word().lower()}',
         'project_description': chance.sentence(),
+        'project_version': f'{random.randint(0, 9)}.{random.randint(0, 9)}.{random.randint(0, 9)}',
+        'project_keywords': f'{chance.word()},{chance.word()},{chance.word()}',
         'author_name': chance.name(),
         'author_email': chance.email(),
         'license_id': chance.pickone([key for key in license_stubs.keys()]),
         'license_fullname': f'{chance.name()} <{chance.email()}>',
-        'license_year': str(random.randint(2000, 2023))
+        'license_year': str(random.randint(2000, 2023)),
+        'github_path': f'{chance.word()}/{chance.word()}-{chance.word()}'.lower(),
+        'python_version': chance.pickone(['3.7', '3.8', '3.9', '3.10', '3.11'])
     }
 
 
@@ -69,3 +74,22 @@ def test_bake_license(cookies: Cookies):
     readme = result.project_path.joinpath('README.md').read_text(encoding='utf-8')
     assert 'This is free and unencumbered software released into the public domain' in readme
     assert 'see [UNLICENSE](./UNLICENSE)' in readme
+
+
+def test_bake_pyproject(cookies: Cookies):
+    context = generate_context()
+    result = cookies.bake(extra_context=context)
+    assert not result.exception
+
+    with result.project_path.joinpath('pyproject.toml').open('r', encoding='utf-8') as fp:
+        pyproject = toml.load(fp)
+
+    assert pyproject['tool']['poetry']['name'] == context['project_slug']
+    assert pyproject['tool']['poetry']['version'] == context['project_version']
+    assert pyproject['tool']['poetry']['description'] == context['project_description']
+    assert pyproject['tool']['poetry']['authors'] == [f'{context["author_name"]} <{context["author_email"]}>']
+    assert pyproject['tool']['poetry']['license'] == context['license_id']
+    assert pyproject['tool']['poetry']['homepage'] == f'https://github.com/{context["github_path"]}'
+    assert pyproject['tool']['poetry']['repository'] == f'https://github.com/{context["github_path"]}.git'
+    assert pyproject['tool']['poetry']['keywords'] == context['project_keywords'].split(',')
+    assert pyproject['tool']['poetry']['dependencies']['python'] == context['python_version']
