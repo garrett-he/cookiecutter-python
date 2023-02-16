@@ -8,6 +8,7 @@ readme = "README.md"
 homepage = "https://github.com/{{ cookiecutter.github_path }}"
 repository = "https://github.com/{{ cookiecutter.github_path }}.git"
 keywords = ["{{ cookiecutter.project_keywords.split(',')|join('", "') }}"]
+packages = [{ include = "{{ cookiecutter.project_package }}", from = "src" }]
 classifiers = []
 
 [tool.poetry.dependencies]

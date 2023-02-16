@@ -19,6 +19,7 @@ def generate_context() -> dict:
     return {
         'project_name': f'{chance.word().capitalize()} {chance.word().capitalize()}',
         'project_slug': f'{chance.word().lower()}-{chance.word().lower()}',
+        'project_package': f'{chance.word().lower()}_{chance.word().lower()}',
         'project_description': chance.sentence(),
         'project_version': f'{random.randint(0, 9)}.{random.randint(0, 9)}.{random.randint(0, 9)}',
         'project_keywords': f'{chance.word()},{chance.word()},{chance.word()}',
@@ -92,4 +93,13 @@ def test_bake_pyproject(cookies: Cookies):
     assert pyproject['tool']['poetry']['homepage'] == f'https://github.com/{context["github_path"]}'
     assert pyproject['tool']['poetry']['repository'] == f'https://github.com/{context["github_path"]}.git'
     assert pyproject['tool']['poetry']['keywords'] == context['project_keywords'].split(',')
+    assert pyproject['tool']['poetry']['packages'] == [{'include': context['project_package'], 'from': 'src'}]
     assert pyproject['tool']['poetry']['dependencies']['python'] == context['python_version']
+
+
+def test_bake_package(cookies: Cookies):
+    result = cookies.bake()
+    assert not result.exception
+
+    package = result.project_path.joinpath(f'src/{result.context["project_package"]}')
+    assert package.exists()
