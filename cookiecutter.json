@@ -27,5 +27,8 @@
     "with_pyinstaller": [
         "no",
         "yes"
+    ],
+    "_copy_without_render": [
+        ".github/workflows/ubuntu-jammy.yml"
     ]
 }
