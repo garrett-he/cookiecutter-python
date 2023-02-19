@@ -2,6 +2,18 @@
 
 A Cookiecutter template for Python packages.
 
+## Features
+
+The template is integrated with:
+
+- [pytest][pytest]: Testing runner.
+- [pylint][pylint]: Static code analyser.
+- [pre-commit][pre-commit]: Git `pre-commit` hook manager.
+- [tox][tox]: Setup multiple testing environments.
+- [github-actions][github-actions]: GitHub Actions.
+- [click][click]: Command-line interface framework (optional).
+- [pyinstaller][pyinstaller]: Python application bundler (optional).
+
 ## Quickstart
 
 1. Install the latest Cookiecutter via command:
@@ -19,3 +31,18 @@ A Cookiecutter template for Python packages.
 Copyright (C) 2023 Garrett HE <garrett.he@hotmail.com>
 
 The BSD 3-Clause License, see [LICENSE](./LICENSE).
+
+
+[pytest]: https://pytest.org
+
+[pylint]: https://pypi.org/project/pylint/
+
+[pre-commit]: https://pre-commit.com/
+
+[tox]: https://tox.wiki
+
+[github-actions]: https://docs.github.com/en/actions
+
+[click]: https://click.palletsprojects.com
+
+[pyinstaller]: https://pyinstaller.org
