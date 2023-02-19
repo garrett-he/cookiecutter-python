@@ -1,5 +1,9 @@
 # cookiecutter-python
 
+![license](https://img.shields.io/github/license/garrett-he/cookiecutter-python)
+![version](https://img.shields.io/badge/version-1.0.0-blue)
+![build](https://img.shields.io/github/actions/workflow/status/garrett-he/cookiecutter-python/ubuntu-jammy.yml)
+
 A Cookiecutter template for Python packages.
 
 ## Features
