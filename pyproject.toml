@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cookiecutter-python"
-version = "0.1.0"
+version = "1.0.0"
 description = "A Cookiecutter template for Python packages."
 authors = ["Garrett HE <garrett.he@hotmail.com>"]
 license = "BSD-3-Clause"
