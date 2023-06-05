@@ -4,6 +4,7 @@ from glob import glob
 LICENSE_ID = '{{ cookiecutter.license_id }}'
 WITH_CLI = '{{ cookiecutter.with_cli }}'
 WITH_PYINSTALLER = '{{ cookiecutter.with_pyinstaller }}'
+WITH_CYTHON = '{{ cookiecutter.with_cython }}'
 
 os.rename(f'LICENSE.{LICENSE_ID}', 'LICENSE')
 
@@ -23,3 +24,7 @@ if WITH_CLI == 'no':
 
 if WITH_PYINSTALLER == 'no':
     os.unlink('{{ cookiecutter.project_slug }}.spec')
+    os.unlink('build.cmd')
+
+if WITH_CYTHON == 'no':
+    os.unlink('setup.py')

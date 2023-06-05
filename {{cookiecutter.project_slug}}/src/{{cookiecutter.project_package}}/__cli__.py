@@ -2,6 +2,7 @@ import click
 
 from {{cookiecutter.project_package}} import __version__
 
+
 def print_version(ctx: click.Context, _, value: str):
     if not value or ctx.resilient_parsing:
         return
