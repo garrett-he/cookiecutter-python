@@ -102,3 +102,11 @@ def test_bake_pyproject(cookies: Cookies):
     assert pyproject['tool']['poetry']['keywords'] == context['project_keywords'].split(',')
     assert pyproject['tool']['poetry']['packages'] == [{'include': context['project_package'], 'from': 'src'}]
     assert pyproject['tool']['poetry']['dependencies']['python'] == context['python_version']
+
+
+def test_bake_package(cookies: Cookies):
+    result = cookies.bake()
+    assert not result.exception
+
+    package = result.project_path.joinpath(f'src/{result.context["project_package"]}')
+    assert package.exists()
