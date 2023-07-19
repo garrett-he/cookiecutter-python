@@ -110,3 +110,19 @@ def test_bake_package(cookies: Cookies):
 
     package = result.project_path.joinpath(f'src/{result.context["project_package"]}')
     assert package.exists()
+
+
+def test_bake_with_click(cookies: Cookies):
+    result = cookies.bake(extra_context={'with_click': 'yes'})
+    assert not result.exception
+
+    assert 'click' in result.project_path.joinpath('pyproject.toml').read_text()
+    assert result.project_path.joinpath(f'src/{result.context["project_package"]}/__main__.py').exists()
+    assert result.project_path.joinpath('tests/test_cli.py').exists()
+
+    result = cookies.bake(extra_context={'with_click': 'no'})
+    assert not result.exception
+
+    assert 'click' not in result.project_path.joinpath('pyproject.toml').read_text()
+    assert not result.project_path.joinpath(f'src/{result.context["project_package"]}/__main__.py').exists()
+    assert not result.project_path.joinpath('tests/test_cli.py').exists()

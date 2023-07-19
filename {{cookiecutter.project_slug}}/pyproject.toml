@@ -13,6 +13,9 @@ classifiers = []
 
 [tool.poetry.dependencies]
 python = "{{ cookiecutter.python_version }}"
+{% if cookiecutter.with_click == 'yes' %}
+click = "^8.1.5"
+{% endif %}
 
 [tool.poetry.group.dev.dependencies]
 chance = "^0.110"
