@@ -17,6 +17,9 @@ pre-commit = "^4.0.1"
 pytest = "^8.3.3"
 pytest-cookies = "^0.7.0"
 
+[tool.pytest.ini_options]
+addopts = "--ignore='{{cookiecutter.project_slug}}'"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
