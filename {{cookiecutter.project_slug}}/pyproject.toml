@@ -16,6 +16,9 @@ python = "{{ cookiecutter.python_version }}"
 {% if cookiecutter.with_cli == 'yes' %}
 click = "^8.1.7"
 {% endif %}
+{% if cookiecutter.with_gui == 'yes' %}
+wxpython = "^4.2.2"
+{% endif %}
 
 [tool.poetry.group.dev.dependencies]
 chance = "^0.110"
@@ -25,9 +28,14 @@ pytest = "^8.3.3"
 pytest-cov = "^5.0.0"
 tox = "^4.21.2"
 
-{% if cookiecutter.with_cli == 'yes' %}
+{% if cookiecutter.with_cli == 'yes' or cookiecutter.with_gui == 'yes' %}
 [tool.poetry.scripts]
+    {% if cookiecutter.with_cli == 'yes' %}
 {{cookiecutter.project_slug}}-cli = "{{cookiecutter.project_package}}.__cli__:main"
+    {% endif %}
+    {% if cookiecutter.with_gui == 'yes' %}
+{{cookiecutter.project_slug}}-gui = "{{cookiecutter.project_package}}.__gui__:main"
+    {% endif %}
 {% endif %}
 
 [build-system]
