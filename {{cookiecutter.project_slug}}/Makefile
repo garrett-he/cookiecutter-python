@@ -27,26 +27,24 @@ build: ## Build project
 
 {% if cookiecutter.with_pyinstaller == 'yes' and cookiecutter.with_cli == 'yes' %}
 .PHONY: bundle-cli
-bundle: ## Bundle project with pyinstaller
+bundle-clit ad: ## Bundle project with pyinstaller
 	rm -rf build/ dist/
 	poetry run pyinstaller {{cookiecutter.project_slug}}-cli.spec
-	cp {CHANGELOG.md,README.md} dist/
 	{% if 'GPL' in cookiecutter.license_id %}
-	cp COPYING dist/
+	cp {CHANGELOG.md,COPYING,README.md} dist/
 	{% else %}
-	cp LICENSE dist/
+	cp {CHANGELOG.md,LICENSE,README.md} dist/
 	{% endif %}
 {% endif %}
 {% if cookiecutter.with_pyinstaller == 'yes' and cookiecutter.with_gui == 'yes' %}
 .PHONY: bundle-gui
-bundle: ## Bundle project with pyinstaller
+bundle-gui: ## Bundle project with pyinstaller
 	rm -rf build/ dist/
 	poetry run pyinstaller {{cookiecutter.project_slug}}-gui.spec
-	cp {CHANGELOG.md,README.md} dist/
 	{% if 'GPL' in cookiecutter.license_id %}
-	cp COPYING dist/
+	cp {CHANGELOG.md,COPYING,README.md} dist/
 	{% else %}
-	cp LICENSE dist/
+	cp {CHANGELOG.md,LICENSE,README.md} dist/
 	{% endif %}
 {% endif %}
 

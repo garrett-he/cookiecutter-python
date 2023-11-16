@@ -32,6 +32,7 @@ if with_pyinstaller == 'yes':
         os.unlink('{{ cookiecutter.project_slug }}-cli.spec')
     if with_gui == 'no':
         os.unlink('{{ cookiecutter.project_slug }}-gui.spec')
+        shutil.rmtree('res')
 else:
     os.unlink('{{ cookiecutter.project_slug }}-cli.spec')
     os.unlink('{{ cookiecutter.project_slug }}-gui.spec')
