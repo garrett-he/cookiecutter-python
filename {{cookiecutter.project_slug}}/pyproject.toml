@@ -16,6 +16,9 @@ python = "{{ cookiecutter.python_version }}"
 {% if cookiecutter.with_cli == 'yes' %}
 click = "^8.1.7"
 {% endif %}
+{% if cookiecutter.with_pyinstaller == 'yes' %}
+pyinstaller = "^6.10.0"
+{% endif %}
 {% if cookiecutter.with_gui == 'yes' %}
 wxpython = "^4.2.2"
 {% endif %}
