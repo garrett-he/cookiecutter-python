@@ -9,6 +9,9 @@ if license_id != 'Unlicense':
     os.rename('LICENSE.{{ cookiecutter.license_id }}', 'LICENSE')
     os.unlink('UNLICENSE')
 
+if license_id == 'GPL-3.0':
+    os.rename('LICENSE', 'COPYING')
+
 for license_file in glob('LICENSE.*'):
     os.unlink(license_file)
 

@@ -24,7 +24,6 @@ tox: ## Run tox with multiple Python versions
 .PHONY: build
 build: ## Build project
 	poetry build
-
 {% if cookiecutter.with_pyinstaller == 'yes' %}
 .PHONY: bundle
 bundle: ## Bundle project with pyinstaller
@@ -32,7 +31,6 @@ bundle: ## Bundle project with pyinstaller
 	poetry run pyinstaller {{cookiecutter.project_slug}}.spec
 	cp {CHANGELOG.md,LICENSE,README.md} dist/
 {% endif %}
-
 .PHONY: publish
 publish: build ## Build and publish to remote index
 	poetry publish --build
